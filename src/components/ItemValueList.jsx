@@ -9,17 +9,31 @@ const ItemValueList = (props) => {
   const produce = props.produce;
 
   return (
-    <Grid container spacing={1} padding={1}>
+    <Grid 
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center" 
+        spacing={2}
+      >
       {produce.map((item) => (
         <React.Fragment key={item.value}>
-          <Grid item xs={4}>
+          <Grid item xs={5}>
             {item.name}
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={5}>
             ${item.value}
           </Grid>
-          <Grid item xs={4}>
-            <Button>X</Button>
+          <Grid item xs={2}>
+            <Button 
+              type="submit" 
+              variant="outlined" 
+              color="error" 
+              size="large" 
+              sx={{ m: 1, width: '5ch' }}
+            >
+              X
+            </Button>
           </Grid>
         </React.Fragment>
       ))}

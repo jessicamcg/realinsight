@@ -26,7 +26,7 @@ function App() {
           <Grid item xs={7}>
             <InputForm />
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={6}>
             <ItemValueList produce={INITIAL_LIST}/>
           </Grid>
         </Grid>
