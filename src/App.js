@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import ItemValueList from "./components/ItemValueList";
+import InputForm from "./components/InputForm";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import { Button } from "@mui/material";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const INITIAL_LIST = [
@@ -12,35 +13,26 @@ const INITIAL_LIST = [
 ];
 
 function App() {
-  return <ItemValueList produce={INITIAL_LIST}/>;
-}
-
-const ItemValueList = (props) => {
-  // YOUR CODE HERE
-  const produce = props.produce;
-
   return (
-    <div>
-      <Box className = "d-flex justify-content-center my-3" sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2} xs={6}>
-          {produce.map((item) => (
-            <>
-              <Grid item xs={4}>
-                {item.name}
-              </Grid>
-              <Grid item xs={4}>
-                ${item.value}
-              </Grid>
-              <Grid item xs={4}>
-                <Button>X</Button>
-              </Grid>
-            </>
-          ))}
+      <Box 
+        sx={{ flexGrow: 1, p:4 }} 
+      >
+        <Grid container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2} 
+        >
+          <Grid item xs={7}>
+            <InputForm />
+          </Grid>
+          <Grid item xs={7}>
+            <ItemValueList produce={INITIAL_LIST}/>
+          </Grid>
         </Grid>
       </Box>
-    </div>
-    
-  )
-};
+  );
+}
+
 
 export default App;
