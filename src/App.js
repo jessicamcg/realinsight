@@ -21,7 +21,23 @@ const ItemValueList = (props) => {
 
   return (
     <div>
-
+      <Box className = "d-flex justify-content-center my-3" sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2} xs={6}>
+          {produce.map((item) => (
+            <>
+              <Grid item xs={4}>
+                {item.name}
+              </Grid>
+              <Grid item xs={4}>
+                ${item.value}
+              </Grid>
+              <Grid item xs={4}>
+                <Button>X</Button>
+              </Grid>
+            </>
+          ))}
+        </Grid>
+      </Box>
     </div>
     
   )
