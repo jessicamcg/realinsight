@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import FilterForm from "./components/FilterForm";
 import ItemValueList from "./components/ItemValueList";
 import InputForm from "./components/InputForm";
 import Box from '@mui/material/Box';
@@ -13,8 +14,9 @@ const INITIAL_LIST = [
 ];
 
 function App() {
-  const [produceList, setProduceList] = useState(INITIAL_LIST)
-  
+  const [produceList, setProduceList] = useState(INITIAL_LIST);
+  const [searchList, setSearchList] =useState(produceList);
+
   const addProduce = (item) => {
     const newProduceList = [item, ...produceList]
     setProduceList(newProduceList);
@@ -23,6 +25,11 @@ function App() {
   const removeProduce = (produceName) => {
     const updatedProduceList = [...produceList].filter((item) => item.name !== produceName)
     setProduceList(updatedProduceList);
+  }
+
+  const searchProduceList = (searchParams) => {
+    const searchResult = [...produceList].filter((item) => item.name.toLowerCase().includes(searchParams.toLowerCase()))
+    setSearchList(searchResult);
   }
   
   return (
@@ -35,11 +42,14 @@ function App() {
           alignItems="center"
           spacing={2} 
         >
+          <Grid item xs={6}>
+            <FilterForm searchProduceList={searchProduceList} />
+          </Grid>
           <Grid item xs={7}>
             <InputForm onSubmit={addProduce} />
           </Grid>
           <Grid item xs={6}>
-            <ItemValueList removeProduce={removeProduce} produceList={produceList}/>
+            <ItemValueList removeProduce={removeProduce} produceList={searchList? searchList: produceList}/>
           </Grid>
         </Grid>
       </Box>
