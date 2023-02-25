@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+
 import ItemValueList from "./components/ItemValueList";
 import InputForm from "./components/InputForm";
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,6 +13,18 @@ const INITIAL_LIST = [
 ];
 
 function App() {
+  const [produceList, setProduceList] = useState(INITIAL_LIST)
+  
+  const addProduce = (item) => {
+    const newProduceList = [item, ...produceList]
+    setProduceList(newProduceList);
+  }
+
+  const removeProduce = (produceName) => {
+    const updatedProduceList = [...produceList].filter((item) => item.name !== produceName)
+    setProduceList(updatedProduceList);
+  }
+  
   return (
       <Box 
         sx={{ flexGrow: 1, p:4 }} 
@@ -24,10 +36,10 @@ function App() {
           spacing={2} 
         >
           <Grid item xs={7}>
-            <InputForm />
+            <InputForm onSubmit={addProduce} />
           </Grid>
           <Grid item xs={6}>
-            <ItemValueList produce={INITIAL_LIST}/>
+            <ItemValueList removeProduce={removeProduce} produceList={produceList}/>
           </Grid>
         </Grid>
       </Box>

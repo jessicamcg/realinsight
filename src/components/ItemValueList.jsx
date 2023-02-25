@@ -1,12 +1,12 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import React, { useState } from "react";
+
 import Grid from '@mui/material/Grid';
 import { Button } from "@mui/material";
 
 const ItemValueList = (props) => {
   // YOUR CODE HERE
-  const produce = props.produce;
+  const produceList = props.produceList;
+  const removeProduce = props.removeProduce;
 
   return (
     <Grid 
@@ -16,7 +16,7 @@ const ItemValueList = (props) => {
         alignItems="center" 
         spacing={2}
       >
-      {produce.map((item) => (
+      {produceList.map((item) => (
         <React.Fragment key={item.value}>
           <Grid item xs={5}>
             {item.name}
@@ -31,6 +31,7 @@ const ItemValueList = (props) => {
               color="error" 
               size="large" 
               sx={{ m: 1, width: '5ch' }}
+              onClick={() => removeProduce(item.name)}
             >
               X
             </Button>

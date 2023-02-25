@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import Grid from '@mui/material/Grid';
@@ -8,15 +10,32 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControl from '@mui/material/FormControl';
 import InputAdornment from '@mui/material/InputAdornment';
 
-const InputForm = () => {
+const InputForm = (props) => {
+  // console.log(props);
+  const [nameInput, setNameInput] = useState('');
+  const [valueInput, setValueInput] = useState('');
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log("submit");
+      props.onSubmit({
+        name: nameInput,
+        value: valueInput
+      })
+      setNameInput('');
+      setValueInput('');
     } catch (e) {
       console.error(e)
     }
+  };
+
+  const handleNameChange = (e) => {
+    setNameInput(e.target.value);
+  };
+
+  const handleValueChange = (e) => {
+    setValueInput(e.target.value);
   };
 
   return (
@@ -37,6 +56,9 @@ const InputForm = () => {
           sx={{ m: 1, width: '25ch' }}
           size="small"
           required
+          value={nameInput}
+          onChange={handleNameChange}
+
         />
 
         <FormControl 
@@ -51,6 +73,9 @@ const InputForm = () => {
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             label="Amount"
             inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            value={valueInput}
+            onChange={handleValueChange}
+
           />
         </FormControl>
 
