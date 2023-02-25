@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 const ItemValueList = (props) => {
   // YOUR CODE HERE
   const produceList = props.produceList;
+  // console.log(produceList);
   const removeProduce = props.removeProduce;
 
   return (
@@ -16,8 +17,8 @@ const ItemValueList = (props) => {
         alignItems="center" 
         spacing={2}
       >
-      {produceList.map((item) => (
-        <React.Fragment key={item.value}>
+      {Array.isArray(produceList) ? produceList.map((item) => (
+        <React.Fragment key={item.name}>
           <Grid item xs={5}>
             {item.name}
           </Grid>
@@ -37,7 +38,7 @@ const ItemValueList = (props) => {
             </Button>
           </Grid>
         </React.Fragment>
-      ))}
+      )) : <>{produceList}</>}
     </Grid>
     
   )
