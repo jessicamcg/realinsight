@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
-import { TextField } from "@mui/material";
-import { Button } from "@mui/material";
-import Grid from '@mui/material/Grid';
-import { Box } from "@mui/material";
-
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import FormControl from '@mui/material/FormControl';
-import InputAdornment from '@mui/material/InputAdornment';
+import { 
+  Box, 
+  Grid, 
+  Button, 
+  TextField, 
+  InputLabel,
+  OutlinedInput,
+  FormControl, 
+  InputAdornment 
+} from "@mui/material";
 
 const InputForm = (props) => {
-  // console.log(props);
   const [nameInput, setNameInput] = useState('');
   const [valueInput, setValueInput] = useState('');
 

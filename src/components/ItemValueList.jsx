@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-import Grid from '@mui/material/Grid';
-import { Button } from "@mui/material";
+import { 
+  Button, 
+  Grid, 
+  Typography 
+} from "@mui/material";
 
 const ItemValueList = (props) => {
-  // YOUR CODE HERE
   const produceList = props.produceList;
-  // console.log(produceList);
   const removeProduce = props.removeProduce;
 
   return (
@@ -20,10 +21,14 @@ const ItemValueList = (props) => {
       {Array.isArray(produceList) ? produceList.map((item) => (
         <React.Fragment key={item.name}>
           <Grid item xs={5}>
-            {item.name}
+            <Typography>
+              {item.name}
+            </Typography>
           </Grid>
           <Grid item xs={5}>
-            ${item.value}
+            <Typography>
+              ${item.value}
+            </Typography>
           </Grid>
           <Grid item xs={2}>
             <Button 

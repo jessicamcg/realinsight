@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import FilterForm from "./components/FilterForm";
 import ItemValueList from "./components/ItemValueList";
 import InputForm from "./components/InputForm";
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import { Snackbar, Alert } from "@mui/material";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  Box, 
+  Grid, 
+  Snackbar, 
+  Alert 
+} from "@mui/material";
 
 const INITIAL_LIST = [
   { name: "Tomatoes", value: 5.0 },
