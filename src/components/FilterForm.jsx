@@ -5,11 +5,12 @@ import {
   InputLabel, 
   OutlinedInput, 
   Button, 
-  Grid 
+  Grid,
 } from '@mui/material';
 
 const FilterForm = (props) => {
   const searchProduceList = props.searchProduceList;
+  const handleReset = props.handleReset;
   const [input, setInput] = useState('');
 
   const handleSubmit = (e) => {
@@ -21,11 +22,6 @@ const FilterForm = (props) => {
   const handleChange = (e) => {
     setInput(e.target.value);
   };
-
-  const handleReset = (e) => {
-    searchProduceList('')
-    setInput('');
-  }
 
   return (
     <Box

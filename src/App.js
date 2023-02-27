@@ -7,7 +7,7 @@ import {
   Box, 
   Grid, 
   Snackbar, 
-  Alert 
+  Alert
 } from "@mui/material";
 
 const INITIAL_LIST = [
@@ -19,6 +19,7 @@ const INITIAL_LIST = [
 function App() {
   const [produceList, setProduceList] = useState(INITIAL_LIST);
   const [searchList, setSearchList] = useState(produceList);
+  const [searchMsg, setSearchMsg] = useState('');
   const [alertMsg, setAlertMsg] = useState('');
 
   const addProduce = (item) => {
@@ -26,7 +27,8 @@ function App() {
     setAlertMsg(`Item added: ${item.name}`)
     setOpen(true);
     setProduceList(newProduceList);
-    setSearchList(newProduceList)
+    setSearchMsg('');
+    setSearchList(null)
   }
 
   const removeProduce = (produceName) => {
@@ -34,16 +36,21 @@ function App() {
     setAlertMsg(`Item removed: ${produceName}`)
     setOpen(true);
     setProduceList(updatedProduceList);
-    setSearchList(updatedProduceList)
+    setSearchMsg('');
+    setSearchList(null);
   }
 
   const searchProduceList = (searchParams) => {
     const searchResult = [...produceList].filter((item) => item.name.toLowerCase().includes(searchParams.toLowerCase()))
-    if (searchResult.length === 0) {
-      setSearchList(`No results for ${searchParams}`)
-    } else {
-      setSearchList(searchResult);
-    }
+    setSearchList(searchResult);
+    searchResult.length === 0
+    ? setSearchMsg(`No search results for ${searchParams}`)
+    : setSearchMsg(`Showing search results for : ${searchParams}`)
+  }
+
+  const handleReset = () => {
+    setSearchList(null);
+    setSearchMsg('');
   }
 
   const [open, setOpen] = useState(false);
@@ -67,7 +74,10 @@ function App() {
           spacing={2} 
         >
           <Grid item xs={6}>
-            <FilterForm searchProduceList={searchProduceList} />
+            <FilterForm 
+              searchProduceList={searchProduceList} 
+              handleReset={handleReset}
+            />
           </Grid>
           <Grid item xs={7}>
             <InputForm onSubmit={addProduce} />
@@ -75,7 +85,8 @@ function App() {
           <Grid item xs={6}>
             <ItemValueList 
               removeProduce={removeProduce} 
-              produceList={(searchList.length!==produceList.length)||(typeof searchList === 'string') ? searchList : produceList}
+              produceList={searchList ? searchList : produceList}
+              searchMsg={searchMsg}
             />
           </Grid>
         </Grid>

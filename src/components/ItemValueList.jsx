@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { 
   Button, 
@@ -9,6 +9,7 @@ import {
 const ItemValueList = (props) => {
   const produceList = props.produceList;
   const removeProduce = props.removeProduce;
+  const searchMsg = props.searchMsg;
 
   return (
     <Grid 
@@ -18,7 +19,12 @@ const ItemValueList = (props) => {
         alignItems="center" 
         spacing={2}
       >
-      {Array.isArray(produceList) ? produceList.map((item) => (
+      <Grid item xs={8}>
+        <Typography>
+          {`${searchMsg}`}
+        </Typography>
+      </Grid>
+      {produceList.map((item) => (
         <React.Fragment key={item.name}>
           <Grid item xs={5}>
             <Typography>
@@ -43,7 +49,7 @@ const ItemValueList = (props) => {
             </Button>
           </Grid>
         </React.Fragment>
-      )) : <>{produceList}</>}
+      ))}
     </Grid>
     
   )
