@@ -1,15 +1,12 @@
 {
   "files": {
-    "main.css": "/realinsight/static/css/main.c2cab247.css",
-    "main.js": "/realinsight/static/js/main.b8776854.js",
+    "main.js": "/realinsight/static/js/main.43e1be1c.js",
     "static/js/787.9aa64e09.chunk.js": "/realinsight/static/js/787.9aa64e09.chunk.js",
     "index.html": "/realinsight/index.html",
-    "main.c2cab247.css.map": "/realinsight/static/css/main.c2cab247.css.map",
-    "main.b8776854.js.map": "/realinsight/static/js/main.b8776854.js.map",
+    "main.43e1be1c.js.map": "/realinsight/static/js/main.43e1be1c.js.map",
     "787.9aa64e09.chunk.js.map": "/realinsight/static/js/787.9aa64e09.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2cab247.css",
-    "static/js/main.b8776854.js"
+    "static/js/main.43e1be1c.js"
   ]
 }
