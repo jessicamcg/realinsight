@@ -22,6 +22,10 @@ function App() {
   const [searchMsg, setSearchMsg] = useState('');
   const [alertMsg, setAlertMsg] = useState('');
 
+  /*
+    @param item object recieved from InputForm on submit
+      uses new item and existing produceList to update state
+  */
   const addProduce = (item) => {
     const newProduceList = [item, ...produceList]
     setAlertMsg(`Item added: ${item.name}`)
@@ -31,6 +35,11 @@ function App() {
     setSearchList(null)
   }
 
+  /*
+    @param produceName string recieved from ItemValueList on delete button
+      filters through existing produceList in state 
+      removes matching produceName/produceList.name
+  */
   const removeProduce = (produceName) => {
     const updatedProduceList = [...produceList].filter((item) => item.name !== produceName)
     setAlertMsg(`Item removed: ${produceName}`)
@@ -40,6 +49,12 @@ function App() {
     setSearchList(null);
   }
 
+  /*
+    @param searchParams string recieved from FilterForm on submit
+      filters through existing produceList in state 
+      displays elements from produceList if produceList.name includes the searchParams
+      searchMsg is displayed depending on the searchParams and/or the length of result of the filter
+  */
   const searchProduceList = (searchParams) => {
     const searchResult = [...produceList].filter((item) => item.name.toLowerCase().includes(searchParams.toLowerCase()))
     setSearchList(searchResult);
@@ -48,11 +63,18 @@ function App() {
     : setSearchMsg(`Showing search results for : ${searchParams}`)
   }
 
+  /*
+    handles reset button to clear search results to display elements in produceList
+  */
   const handleReset = () => {
     setSearchList(null);
     setSearchMsg('');
   }
 
+  /*
+    from MUI
+    handles SnackBar alert
+  */
   const [open, setOpen] = useState(false);
   const handleClose = (event, reason) => {
       if (reason === "clickaway") {
@@ -63,6 +85,10 @@ function App() {
       setAlertMsg('')
   };
   
+
+  /*
+    using props to pass down actions to handle state at this container level
+  */
   return (
       <Box 
         sx={{ flexGrow: 1, p:4 }} 
